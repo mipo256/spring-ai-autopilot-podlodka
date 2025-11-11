@@ -1,0 +1,6 @@
+services:
+  chromadb:
+    container_name: chromadb
+    image: chromadb/chroma:1.3.4.dev15-amd64
+    ports:
+      - 8000:8000

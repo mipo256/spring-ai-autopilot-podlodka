@@ -1,0 +1,23 @@
+server:
+  port: 8955
+
+spring:
+  ai:
+    vectorstore:
+      type: chroma
+      chroma:
+        collection-name: spring-ai-autopilot
+        database-name: spring-ai-autopilot
+        initialize-schema: true
+    ollama:
+      embedding:
+        options:
+          model: nomic-embed-text:v1.5
+      base-url: http://localhost:11434
+      chat:
+        options:
+          keep_alive: 5m
+          format: json
+          model: llama3.1:8b
+    model:
+      embedding: ollama
