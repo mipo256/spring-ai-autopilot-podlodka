@@ -21,7 +21,7 @@ public class DocumentManager {
         TextReader textReader = new TextReader(new ByteArrayResource(content.getBytes(StandardCharsets.UTF_8)));
         List<Document> documents = textReader.get();
 
-        TokenTextSplitter tokenTextSplitter = new TokenTextSplitter();
+        TokenTextSplitter tokenTextSplitter = new TokenTextSplitter(1536, 1, 1, Integer.MAX_VALUE, true);
         List<Document> splitDocuments = tokenTextSplitter.split(documents);
 
         vectorStore.add(splitDocuments);

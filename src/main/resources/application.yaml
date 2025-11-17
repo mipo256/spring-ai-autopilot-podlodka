@@ -2,12 +2,17 @@ server:
   port: 8955
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
   ai:
     vectorstore:
-      type: chroma
-      chroma:
-        collection-name: spring-ai-autopilot
-        database-name: spring-ai-autopilot
+      pgvector:
+        dimensions: 768
+        index-type: hnsw
+        distance-type: cosine_distance
+#       TODO: That one does not work - see the bug: https://github.com/spring-projects/spring-ai/issues/4845
         initialize-schema: true
     ollama:
       embedding:
@@ -18,6 +23,6 @@ spring:
         options:
           keep_alive: 5m
           format: json
-          model: llama3.1:8b
+          model: deepseek-r1:latest
     model:
       embedding: ollama

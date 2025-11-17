@@ -1,0 +1,11 @@
+services:
+  chromadb:
+    container_name: chromadb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    post_start:
+      - command: "chmod a+x install_chroma.sh && ./install_chroma.sh"
+      - command: "chmod a+x setup_collection.py && ./setup_collection.py"
